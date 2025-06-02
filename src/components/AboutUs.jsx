@@ -1,5 +1,6 @@
 import React from 'react';
-import { Truck, Award, Leaf } from 'lucide-react'; // Import matching icons
+import { Truck, Award, Leaf } from 'lucide-react'; 
+import logo from '../assets/images/etlogo.png'
 
 const AboutUs = () => {
   return (
@@ -9,7 +10,7 @@ const AboutUs = () => {
           {/* Image Section */}
           <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
             <img
-              src="https://readdy.ai/api/search-image?query=Professional%20female%20pastry%20chef%20in%20a%20modern%20kitchen%20preparing%20gourmet%20treats%20with%20attention%20to%20detail%2C%20warm%20lighting%20highlighting%20her%20focused%20expression%2C%20artisanal%20food%20preparation%20with%20elegant%20kitchen%20equipment%20and%20ingredients%20visible&width=600&height=600&seq=17&orientation=squarish"
+              src={logo}
               alt="About Our Company"
               className="rounded-lg shadow-xl w-full h-auto"
             />
@@ -21,10 +22,14 @@ const AboutUs = () => {
               About Our Passion
             </h2>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              Founded in 2020, our journey began with a simple mission: to create exceptional edible treats that bring joy to every occasion. What started as a small home kitchen experiment has grown into Ghana's premier artisanal treat company.
+              Our journey began with a simple mission: to create exceptional edible treats that bring joy to every occasion. We produce high-quality chocolate blends made with cocoa and infused with other food crops such as cashew nuts, ginger, peanuts, and coconut.
+
+              In addition, we offer a wide variety of pastries, including cupcakes, cookies, and all types of cakes for your special occasions.
+
+              We are also committed to empowering youth—especially young women—by providing practical economic and vocational skills through our baking classes and training programs, promoting financial independence and self-sufficiency.
             </p>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              Our founder, Akosua Mensah, combines traditional Ghanaian flavors with international techniques learned during her culinary training in France. Every product is handcrafted with premium ingredients, attention to detail, and a commitment to excellence.
+            Our founder, Yvonne Nouriyee, ensures that every product is handcrafted with premium ingredients, meticulous attention to detail, and a strong commitment to excellence.
             </p>
 
             {/* Features List */}

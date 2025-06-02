@@ -33,9 +33,9 @@ const Footer = () => {
               moments since 2020.
             </p>
             <div className="flex space-x-4">
-              <Facebook className="text-amber-300 hover:text-white cursor-pointer" />
-              <Instagram className="text-amber-300 hover:text-white cursor-pointer" />
-              <Twitter className="text-amber-300 hover:text-white cursor-pointer" />
+              <Facebook className="text-[#a855f7] hover:text-white cursor-pointer" />
+              <Instagram className="text-[#a855f7] hover:text-white cursor-pointer" />
+              <Twitter className="text-[#a855f7] hover:text-white cursor-pointer" />
             </div>
           </div>
 
@@ -45,7 +45,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {['Home', 'Shop', 'About Us', 'Blog', 'Contact', 'FAQ'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="hover:text-amber-300 transition-colors cursor-pointer">
+                  <a href="#" className="hover:text-[#a855f7] transition-colors cursor-pointer">
                     {item}
                   </a>
                 </li>
@@ -58,19 +58,19 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-white mb-4">Contact Us</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
-                <MapPin className="mt-1 mr-3 text-amber-400" size={18} />
+                <MapPin className="mt-1 mr-3 text-[#a855f7]" size={18} />
                 <span>Adenta Frafraha, Accra, Ghana</span>
               </li>
               <li className="flex items-center">
-                <Phone className="mr-3 text-amber-400" size={18} />
+                <Phone className="mr-3 text-[#a855f7]" size={18} />
                 <span>+233 24 9967 7007</span>
               </li>
               <li className="flex items-center">
-                <Mail className="mr-3 text-amber-400" size={18} />
+                <Mail className="mr-3 text-[#a855f7]" size={18} />
                 <span>info@ghanatreats.com</span>
               </li>
               <li className="flex items-center">
-                <Clock className="mr-3 text-amber-400" size={18} />
+                <Clock className="mr-3 text-[#a855f7]" size={18} />
                 <span>Mon-Sat: 9AM - 6PM</span>
               </li>
             </ul>
@@ -88,14 +88,14 @@ const Footer = () => {
             </div>
             <h3 className="text-xl font-bold text-white mb-4">Certified By</h3>
             <div className="flex space-x-4">
-              <div className="bg-white p-2 rounded text-amber-800 font-bold">FDA</div>
-              <div className="bg-white p-2 rounded text-amber-800 font-bold">GSA</div>
+              <div className="bg-white p-2 rounded text-[#a855f7] font-bold">FDA</div>
+              <div className="bg-white p-2 rounded text-[#a855f7] font-bold">GSA</div>
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-amber-800 pt-8">
+        <div className="border-t border-[#a855f7] pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p>
               &copy; {new Date().getFullYear()} Ghana Treats. All rights
@@ -113,7 +113,7 @@ const Footer = () => {
       </div>
 
       {/* Newsletter Popup */}
-      {showNewsletterPopup && (
+      {/* {showNewsletterPopup && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full relative overflow-hidden">
             <button
@@ -152,7 +152,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Cookie Consent */}
       {showCookieConsent && (
@@ -170,7 +170,7 @@ const Footer = () => {
               </button>
               <button
                 onClick={() => setShowCookieConsent(false)}
-                className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm"
+                className="bg-[#ec4899] hover:bg-[#e782b5] text-white px-4 py-2 rounded-lg text-sm"
               >
                 Accept All
               </button>

@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Cart from '../components/Cart';
 import AboutUs from '../components/AboutUs';
 import Testimonials from '../components/Testimonials';
+import ContactForm from '../components/Contact';
 
 const Index = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -69,6 +70,7 @@ const Index = () => {
 
       <AboutUs />
       <Testimonials />
+      <ContactForm/>
       <Footer />
 
       <Cart 
