@@ -1,75 +1,172 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  FaMapMarkerAlt,
-  FaEnvelope,
-  FaUserAlt,
-  FaPhoneAlt,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedin,
-} from 'react-icons/fa';
+  MapPin,
+  Mail,
+  User,
+  Phone,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Send
+} from 'lucide-react';
 
 const ContactForm = () => {
-  return (
-    <div className="min-h-screen bg-[#FDF2F8] flex items-center justify-center px-4 py-8">
-      {/* Wrapper for responsiveness */}
-      <div className="relative bg-white rounded-xl shadow-xl w-full max-w-3xl p-6 md:p-10 flex flex-col md:flex-row items-center md:items-start">
-        
-        {/* Contact Card - stacked on mobile */}
-        <div className="md:absolute md:-left-24 md:top-1/2 md:transform md:-translate-y-1/2 w-full md:w-80 bg-[#ec4899] text-white shadow-lg p-6 mb-6 md:mb-0 z-10">
-          <h2 className="text-xl font-semibold mb-6">Contact Us</h2>
-          <ul className="space-y-4 text-sm">
-            <li className="flex items-start">
-              <FaMapMarkerAlt className="mt-1" />
-              <span className="ml-3">Frafraha<br />Adenta,Ghana</span>
-            </li>
-            <li className="flex items-center">
-              <FaEnvelope />
-              <span className="ml-3">info@ghanatreats.com</span>
-            </li>
-            <li className="flex items-center">
-              <FaUserAlt />
-              <span className="ml-3">ebibletreats</span>
-            </li>
-            <li className="flex items-center">
-              <FaPhoneAlt />
-              <span className="ml-3">+233 24 9967 7007</span>
-            </li>
-          </ul>
-          <div className="flex space-x-4 mt-6 text-xl">
-            <a href="#" className="hover:text-blue-300"><FaInstagram /></a>
-            <a href="#" className="hover:text-blue-300"><FaTwitter /></a>
-            <a href="#" className="hover:text-blue-300"><FaLinkedin /></a>
-          </div>
-        </div>
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
-        {/* Form Section */}
-        <div className="w-full md:ml-auto md:w-2/3 md:pl-10">
-          <h2 className="text-2xl font-bold text-gray-800 mb-1">Get in Touch</h2>
-          <p className="text-gray-500 text-sm mb-6">Feel free to drop us a line below!</p>
-          <form className="space-y-4 w-full max-w-[350px]">
-            <input
-              type="text"
-              placeholder="Your name"
-              className="w-full border border-gray-300 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ec4899]"
-            />
-            <input
-              type="email"
-              placeholder="Your email"
-              className="w-full border border-gray-300 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ec4899]"
-            />
-            <textarea
-              placeholder="Type your message here..."
-              rows="4"
-              className="w-full border border-gray-300 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ec4899]"
-            ></textarea>
-            <button
-              type="submit"
-              className="bg-[#ec4899] text-white px-6 py-2 rounded-full shadow hover:opacity-90 transition text-sm"
-            >
-              SEND
-            </button>
-          </form>
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Handle form submission logic here
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 flex items-center justify-center px-2 py-6">
+      <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl w-full max-w-4xl overflow-hidden">
+        <div className="flex flex-col lg:flex-row">
+
+          {/* Contact Info Card */}
+          <div className="lg:w-2/5 bg-[#ec4899] text-white p-6 lg:p-8 relative">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-12 translate-x-12"></div>
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/10 rounded-full translate-y-10 -translate-x-10"></div>
+
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-2">Let's Connect</h2>
+              <p className="text-pink-100 mb-6 text-sm">We'd love to hear from you. Send us a message and we'll respond quickly.</p>
+
+              <div className="space-y-4 text-sm">
+                <div className="flex items-start gap-3">
+                  <div className="bg-white/20 p-2 rounded-xl">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Address</h4>
+                    <p className="text-pink-100">Frafraha<br />Adenta, Ghana</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="bg-white/20 p-2 rounded-xl">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Email</h4>
+                    <p className="text-pink-100">info@ghanatreats.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="bg-white/20 p-2 rounded-xl">
+                    <User className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Username</h4>
+                    <p className="text-pink-100">ebibletreats</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="bg-white/20 p-2 rounded-xl">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Phone</h4>
+                    <p className="text-pink-100">+233 24 9967 7007</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <h4 className="font-semibold mb-2">Follow Us</h4>
+                <div className="flex space-x-3">
+                  <a href="#" className="bg-white/20 p-2 rounded-xl hover:bg-white/30 hover:scale-105 transition">
+                    <Instagram className="w-4 h-4" />
+                  </a>
+                  <a href="#" className="bg-white/20 p-2 rounded-xl hover:bg-white/30 hover:scale-105 transition">
+                    <Twitter className="w-4 h-4" />
+                  </a>
+                  <a href="#" className="bg-white/20 p-2 rounded-xl hover:bg-white/30 hover:scale-105 transition">
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Form Section */}
+          <div className="lg:w-3/5 p-6 lg:p-8">
+            <div className="max-w-md mx-auto">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">Get in Touch</h2>
+              <p className="text-gray-600 mb-6 text-sm">Ready to start a conversation? Send us a message below.</p>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
+                    placeholder="Full name"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
+                    placeholder="Email address"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 resize-none"
+                    placeholder="Your message..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-[#ec4899] text-white font-medium py-2.5 rounded-lg shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition flex items-center justify-center space-x-2 text-sm"
+                >
+                  <span>Send Message</span>
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+
+              <div className="mt-6 p-3 bg-pink-50 rounded-lg border border-pink-100">
+                <p className="text-xs text-pink-700 text-center">
+                  <span className="font-medium">Quick Response:</span> We typically respond within 24 hours.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

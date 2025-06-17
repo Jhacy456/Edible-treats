@@ -1,10 +1,10 @@
 import React from 'react';
 import { Truck, Award, Leaf } from 'lucide-react'; 
-import logo from '../assets/images/etlogo.png'
+import logo from '../assets/images/etlogo.png';
 
 const AboutUs = () => {
   return (
-    <section className="py-16" id='about-us'>
+    <section className="py-16" id="about-us">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
           {/* Image Section */}
@@ -12,7 +12,7 @@ const AboutUs = () => {
             <img
               src={logo}
               alt="About Our Company"
-              className="rounded-lg shadow-xl w-full h-auto"
+              className="rounded-lg w-full max-w-md mx-auto md:mx-0 h-auto object-contain"
             />
           </div>
 
@@ -29,7 +29,7 @@ const AboutUs = () => {
               We are also committed to empowering youth—especially young women—by providing practical economic and vocational skills through our baking classes and training programs, promoting financial independence and self-sufficiency.
             </p>
             <p className="text-gray-700 mb-6 leading-relaxed">
-            Our founder, Yvonne Nouriyee, ensures that every product is handcrafted with premium ingredients, meticulous attention to detail, and a strong commitment to excellence.
+              Our founder, Yvonne Nouriyee, ensures that every product is handcrafted with premium ingredients, meticulous attention to detail, and a strong commitment to excellence.
             </p>
 
             {/* Features List */}
