@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Facebook, Instagram, Twitter, Phone, Mail, MapPin, Clock, X, Gift, ArrowUp, } from 'lucide-react';
 import { IoLogoWhatsapp } from "react-icons/io";
+
+
 const Footer = () => {
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
   const [showCookieConsent, setShowCookieConsent] = useState(true);

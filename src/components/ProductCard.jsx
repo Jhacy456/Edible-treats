@@ -5,8 +5,8 @@ const ProductCard = ({ product, onAddToCart }) => {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
       <div className="relative overflow-hidden">
-        <img 
-          src={product.image} 
+        <img
+          src={product.image}
           alt={product.name}
           className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
         />
@@ -17,22 +17,22 @@ const ProductCard = ({ product, onAddToCart }) => {
           {product.category}
         </div>
       </div>
-      
+
       <div className="p-6">
         <div className="flex items-center space-x-1 mb-2">
           {[...Array(5)].map((_, i) => (
-            <Star 
-              key={i} 
-              size={14} 
-              className={`${i < product.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
+            <Star
+              key={i}
+              size={14}
+              className={`${i < product.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
             />
           ))}
           <span className="text-sm text-gray-600 ml-2">({product.reviews})</span>
         </div>
-        
+
         <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
-        
+
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <span className="text-2xl font-bold text-treat-pink">GH₵{product.price}</span>
@@ -40,9 +40,15 @@ const ProductCard = ({ product, onAddToCart }) => {
               <span className="text-gray-400 line-through"> GH₵{product.originalPrice}</span>
             )}
           </div>
-          
-          <button 
-            onClick={() => onAddToCart(product)}
+
+          <button
+            onClick={() => {
+              if (typeof onAddToCart === 'function') {
+                onAddToCart({ ...product, quantity: 1 });
+              } else {
+                console.error("onAddToCart is NOT a function!", onAddToCart);
+              }
+            }}
             className="bg-[#a855f7] hover:bg-purple-600 text-white p-3 rounded-full transition-colors shadow-lg hover:shadow-xl group"
           >
             <Plus size={20} className="group-hover:rotate-90 transition-transform" />
