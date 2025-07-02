@@ -1,5 +1,5 @@
 import React from 'react';
-import { Truck, Award, Leaf } from 'lucide-react'; 
+import { Truck, Award, Leaf } from 'lucide-react';
 import logo from '../assets/images/etlogo.png';
 
 const AboutUs = () => {
@@ -47,10 +47,16 @@ const AboutUs = () => {
                 <span className="gradient-text font-medium">Nationwide Delivery</span>
               </div>
             </div>
-
-            <button className="bg-[#ec4899] hover:bg-[#f88ec3] text-white px-6 py-3 rounded-full font-medium transition-colors duration-300 whitespace-nowrap">
-              Learn More About Us
-            </button>
+            <a
+              href="https://wa.me/233249967700"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <button className="bg-[#ec4899] hover:bg-[#f88ec3] text-white px-6 py-3 rounded-full font-medium transition-colors duration-300 whitespace-nowrap">
+                Learn More About Us
+              </button>
+            </a>
           </div>
         </div>
       </div>

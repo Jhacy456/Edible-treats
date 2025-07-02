@@ -7,7 +7,7 @@ import Cart from '../components/Cart';
 import AboutUs from '../components/AboutUs';
 import Testimonials from '../components/Testimonials';
 import ContactForm from '../components/Contact';
-import { useCart } from '../hooks/useCart'; 
+import { useCart } from '../hooks/useCart';
 
 const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -19,7 +19,7 @@ const Index = () => {
     updateQuantity,
     removeItem,
     clearCart,
-  } = useCart(); 
+  } = useCart();
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
@@ -27,28 +27,29 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <Header 
-        cartItems={cartItems} 
-        onCartToggle={toggleCart} 
+      <Header
+        cartItems={cartItems}
+        onCartToggle={toggleCart}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
 
       <Hero />
-    <ProductGrid onAddToCart={addToCart} />
+      <ProductGrid onAddToCart={addToCart} />
       <AboutUs />
       <Testimonials />
       <ContactForm />
       <Footer />
 
-      <Cart 
+      <Cart
         isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
+        onClose={() => setIsCartOpen(false)} 
         cartItems={cartItems}
         onUpdateQuantity={updateQuantity}
         onRemoveItem={removeItem}
-        onClearCart={clearCart} 
+        clearCart={clearCart}              
       />
+
     </div>
   );
 };

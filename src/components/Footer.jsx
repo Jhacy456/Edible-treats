@@ -45,9 +45,9 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold text-pink-800 mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-700">
-              {['Home', 'Shop', 'About Us', 'Blog', 'Contact', 'FAQ'].map((item) => (
+              {['Home', 'Products', 'About Us', 'Contact', "Testimonials", ].map((item) => (
                 <li key={item}>
-                  <a href="#" className="hover:text-pink-700 transition-colors cursor-pointer">
+                  <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-pink-700 transition-colors cursor-pointer">
                     {item}
                   </a>
                 </li>
@@ -69,7 +69,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="mr-3 text-pink-600" size={18} />
-                <span>info@ghanatreats.com</span>
+                <span>yanuoriyee@gmail.com</span>
               </li>
               <li className="flex items-center">
                 <Clock className="mr-3 text-pink-600" size={18} />
@@ -99,7 +99,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-pink-400 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-gray-700">
-            <p>&copy; {new Date().getFullYear()} Ghana Treats. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Edible Treats. All rights reserved.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               {['Privacy Policy', 'Terms of Service', 'Shipping Policy'].map((link) => (
                 <a key={link} href="#" className="text-sm hover:text-pink-700 cursor-pointer">

@@ -28,11 +28,11 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Handle form submission logic here
+
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 flex items-center justify-center px-2 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 flex items-center justify-center px-2 py-6" id='contact'>
       <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl w-full max-w-4xl overflow-hidden">
         <div className="flex flex-col lg:flex-row">
 
@@ -62,7 +62,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold">Email</h4>
-                    <p className="text-pink-100">info@ghanatreats.com</p>
+                    <p className="text-pink-100">yanuoriyee@gmail.com</p>
                   </div>
                 </div>
 

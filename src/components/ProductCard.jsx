@@ -13,7 +13,7 @@ const ProductCard = ({ product, onAddToCart }) => {
         <button className="absolute top-4 right-4 p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
           <Heart size={18} className="text-gray-600 hover:text-treat-pink" />
         </button>
-        <div className="absolute bottom-4 left-4 bg-treat-pink text-white px-3 py-1 rounded-full text-sm font-medium">
+        <div className="absolute bottom-4 left-4 bg-treat-pink text-white px-3 py-1 rounded-full text-sm font-bold">
           {product.category}
         </div>
       </div>

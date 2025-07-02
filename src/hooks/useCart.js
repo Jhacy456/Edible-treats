@@ -1,42 +1,20 @@
+// src/hooks/useCart.js
 import { useState, useEffect } from 'react';
 
 export const useCart = () => {
-  const [cartItems, setCartItems] = useState([]);
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
+  const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
-    }
-  }, []);
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
-  // Save to localStorage on change
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const updateQuantity = (id, quantity) => {
-    if (quantity <= 0) {
-      removeItem(id);
-    } else {
-      setCartItems(prev =>
-        prev.map(item =>
-          item.id === id ? { ...item, quantity } : item
-        )
-      );
-    }
-  };
-
-  const removeItem = (id) => {
-    setCartItems(prev => prev.filter(item => item.id !== id));
-  };
-
- 
   const addToCart = (item) => {
     setCartItems(prev => {
-      const exists = prev.find(p => p.id === item.id);
-      if (exists) {
+      const existing = prev.find(p => p.id === item.id);
+      if (existing) {
         return prev.map(p =>
           p.id === item.id ? { ...p, quantity: p.quantity + item.quantity } : p
         );
@@ -45,10 +23,23 @@ export const useCart = () => {
     });
   };
 
+  const updateQuantity = (id, quantity) => {
+    if (quantity <= 0) {
+      removeItem(id);
+    } else {
+      setCartItems(prev =>
+        prev.map(p => (p.id === id ? { ...p, quantity } : p))
+      );
+    }
+  };
+
+  const removeItem = (id) => {
+    setCartItems(prev => prev.filter(p => p.id !== id));
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
-
 
   return {
     cartItems,
