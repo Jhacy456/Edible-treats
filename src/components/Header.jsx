@@ -33,7 +33,7 @@ const Header = ({ cartItems, onCartToggle, searchQuery, setSearchQuery }) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
-            {['Home', 'Products', 'About Us', 'Testimonials', 'Contact'].map((item) => (
+            {['Home', 'Products', 'About Us','Trainings' ,'Testimonials', 'Contact'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
@@ -84,7 +84,7 @@ const Header = ({ cartItems, onCartToggle, searchQuery, setSearchQuery }) => {
         {isMenuOpen && (
           <div className="md:hidden px-4 pb-4">
             <ul className="space-y-3 mt-2">
-              {['Home', 'Products', 'About Us', 'Testimonials', 'Contact'].map((item) => (
+              {['Home', 'Products', 'About Us','Trainings', 'Testimonials', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}

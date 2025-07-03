@@ -110,46 +110,41 @@ const ContactForm = () => {
               <h2 className="text-2xl font-bold text-gray-800 mb-2">Get in Touch</h2>
               <p className="text-gray-600 mb-6 text-sm">Ready to start a conversation? Send us a message below.</p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                action="https://formspree.io/f/xdoqzqzq" // Replace with your Formspree endpoint!
+                method="POST"
+                className="space-y-4"
+              >
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
                   <input
                     type="text"
                     name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
                     placeholder="Full name"
                     required
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                   <input
                     type="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
                     placeholder="Email address"
                     required
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                   <textarea
                     name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
                     rows={4}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 resize-none"
                     placeholder="Your message..."
                     required
                   ></textarea>
                 </div>
-
                 <button
                   type="submit"
                   className="w-full bg-[#ec4899] text-white font-medium py-2.5 rounded-lg shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition flex items-center justify-center space-x-2 text-sm"

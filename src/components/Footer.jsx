@@ -45,7 +45,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold text-pink-800 mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-700">
-              {['Home', 'Products', 'About Us', 'Contact', "Testimonials", ].map((item) => (
+              {['Home', 'Products', 'About Us','Trainings', 'Contact', "Testimonials", ].map((item) => (
                 <li key={item}>
                   <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-pink-700 transition-colors cursor-pointer">
                     {item}

@@ -8,6 +8,7 @@ import AboutUs from '../components/AboutUs';
 import Testimonials from '../components/Testimonials';
 import ContactForm from '../components/Contact';
 import { useCart } from '../hooks/useCart';
+import Trainings from '../components/Trainings';
 
 const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -37,6 +38,7 @@ const Index = () => {
       <Hero />
       <ProductGrid onAddToCart={addToCart} />
       <AboutUs />
+      <Trainings/>
       <Testimonials />
       <ContactForm />
       <Footer />
