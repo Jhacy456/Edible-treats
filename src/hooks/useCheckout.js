@@ -13,7 +13,7 @@ export const useCheckout = () => {
 
     return new Promise((resolve, reject) => {
       const handler = window.PaystackPop.setup({
-        key: 'pk_test_b9ff8364b1996d42b2c89ad77b8cc610e748ebf7',
+        key: 'pk_live_a2aee4e2b8929c02c24fb42b46e9f451bdf98419',
         email: customerEmail,
         amount: amountInPesewas,
         currency: 'GHS',

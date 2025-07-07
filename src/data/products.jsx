@@ -61,7 +61,7 @@ const products = [
       id: 4,
       name: "Milk Chip Cookies",
       description: "Freshly baked cookies with premium Milk chips",
-      price: 20,
+      price: 120,
       image: cookies1,
       category: "cookies",
       rating: 4,
@@ -89,7 +89,7 @@ const products = [
     },
     {
       id: 7,
-      name: "Fresh Cookies",
+      name: "Fresh Chocolate Cookies",
       description: "Soft, dark chocolate cookie with a rich, deep cocoa flavor.",
       price: 180,
       image: cart5,
@@ -109,7 +109,7 @@ const products = [
     },
     {
       id: 9,
-      name: "Chocolate cookies",
+      name: "Chocolate chip cookies",
       description: " Chocolate cookie loaded with big chunks of milk and dark chocolate.",
       price: 180,
       image: cart7,
@@ -149,9 +149,9 @@ const products = [
     },
     {
       id: 13,
-      name: "Customized Chocolate bars",
+      name: "Customized Chocolate bars 50grams",
       description: "Design your own chocolate bar just the way you like it.",
-      price: 60,
+      price: 45,
       image: cart11,
       category: "chocolates",
       rating: 4,
@@ -169,9 +169,9 @@ const products = [
     },
     {
       id: 15,
-      name: "Enumde Dark chocolate",
-      description: "Smooth and intense. A classic dark chocolate bar with 100% coco",
-      price: 50,
+      name: "Enumde Customized Dark chocolate",
+      description: "Smooth and intense. A classic dark chocolate bar with 100% coconut",
+      price: 60,
       image: cart13,
       category: "chocolates",
       rating: 4,
@@ -220,7 +220,7 @@ const products = [
     {
       id: 20,
       name: "Enumde Chocolate Bars",
-      description: "Premium chocolates made from cocoad infused with local crops",
+      description: "Premium chocolates made from cocoa infused with local crops",
       price: 50,
       image: cart18,
       category: "chocolates",
@@ -240,7 +240,7 @@ const products = [
     {
       id: 22,
       name: "Enumde Chocolate Bars",
-      description: "Premium chocolates made from cocoad infused with local crops",
+      description: "Premium chocolates made from cocoa infused with local crops",
       price: 50,
       image: cart20,
       category: "chocolates",
@@ -250,7 +250,7 @@ const products = [
     {
       id: 23,
       name: "Enumde Mango Chocolate Bars",
-      description: "Premium chocolates made from cocoad infused with fresh mango",
+      description: "Premium chocolates made from cocoa infused with fresh mango",
       price: 50,
       image: cart21,
       category: "chocolates",
@@ -260,7 +260,7 @@ const products = [
     {
       id: 24,
       name: "Enumde Chocolate Bars",
-      description: "Premium chocolates made from cocoad infused with local crops",
+      description: "Premium chocolates made from cocoa infused with local crops",
       price: 50,
       image: cart22,
       category: "chocolates",
@@ -270,7 +270,7 @@ const products = [
     {
       id: 25,
       name: "Enumde Chocolate Bars",
-      description: "Premium chocolates made from cocoad infused with local crops",
+      description: "Premium chocolates made from cocoa infused with local crops",
       price: 50,
       image: cart23,
       category: "chocolates",
