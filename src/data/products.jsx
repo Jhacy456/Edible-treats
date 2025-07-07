@@ -49,9 +49,9 @@ const products = [
     },
     {
       id: 3,
-      name: "Chocolate Cookies",
+      name: "Ginger Cookies",
       description: "Freshly baked cookies with premium Chocolate chips",
-      price: 180,
+      price: 200,
       image: cart2,
       category: "cookies",
       rating: 5,
