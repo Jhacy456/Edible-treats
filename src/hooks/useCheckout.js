@@ -13,6 +13,7 @@ export const useCheckout = () => {
 
     return new Promise((resolve, reject) => {
       const handler = window.PaystackPop.setup({
+        //key: process.env.VITE_PAYSTACK_PUBLIC_KEY, 
         key: 'pk_live_a2aee4e2b8929c02c24fb42b46e9f451bdf98419',
         email: customerEmail,
         amount: amountInPesewas,

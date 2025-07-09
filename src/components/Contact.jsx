@@ -1,14 +1,6 @@
-import React, { useState } from 'react';
-import {
-  MapPin,
-  Mail,
-  User,
-  Phone,
-  Instagram,
-  Twitter,
-  Linkedin,
-  Send
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MapPin, Mail, User, Phone, Instagram, Twitter, Linkedin, Send, CheckCircle, X } from 'lucide-react';
+import { useForm } from '@formspree/react';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +8,8 @@ const ContactForm = () => {
     email: '',
     message: ''
   });
+
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,10 +19,28 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
+  const [state, handleSubmit] = useForm("xzzgloag");
 
+  // Handle successful submission
+  useEffect(() => {
+    if (state.succeeded) {
+      setShowSuccess(true);
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+    }
+  }, [state.succeeded]);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit(e);
   };
 
   return (
@@ -110,9 +122,27 @@ const ContactForm = () => {
               <h2 className="text-2xl font-bold text-gray-800 mb-2">Get in Touch</h2>
               <p className="text-gray-600 mb-6 text-sm">Ready to start a conversation? Send us a message below.</p>
 
+              {/* Success Message */}
+              {showSuccess && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <div>
+                      <p className="text-sm font-medium text-green-800">Message sent successfully!</p>
+                      <p className="text-xs text-green-600">We'll get back to you within 24 hours.</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowSuccess(false)}
+                    className="text-green-600 hover:text-green-800 transition"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+
               <form
-                action="https://formspree.io/f/xdoqzqzq" // Replace with your Formspree endpoint!
-                method="POST"
+                onSubmit={handleFormSubmit}
                 className="space-y-4"
               >
                 <div>
@@ -120,6 +150,8 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
                     placeholder="Full name"
                     required
@@ -130,6 +162,8 @@ const ContactForm = () => {
                   <input
                     type="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
                     placeholder="Email address"
                     required
@@ -140,6 +174,8 @@ const ContactForm = () => {
                   <textarea
                     name="message"
                     rows={4}
+                    value={formData.message}
+                    onChange={handleInputChange}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 resize-none"
                     placeholder="Your message..."
                     required
@@ -147,9 +183,10 @@ const ContactForm = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#ec4899] text-white font-medium py-2.5 rounded-lg shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition flex items-center justify-center space-x-2 text-sm"
+                  disabled={state.submitting}
+                  className="w-full bg-[#ec4899] text-white font-medium py-2.5 rounded-lg shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition flex items-center justify-center space-x-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  <span>Send Message</span>
+                  <span>{state.submitting ? 'Sending...' : 'Send Message'}</span>
                   <Send className="w-4 h-4" />
                 </button>
               </form>

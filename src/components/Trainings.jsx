@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { ChefHat, Users, Clock, Award, Star, ArrowRight, Play, Calendar, MapPin, Heart, Trophy, BookOpen } from 'lucide-react';
+import { ChefHat, Users, Clock, Award, Star, ArrowRight, Play, Calendar, MapPin, Heart, Trophy, BookOpen, CreditCard, Shield, CheckCircle, X } from 'lucide-react';
+
 import train3 from '../assets/images/train3.jpg'
 import train6 from '../assets/images/train6.jpg'
 import train5 from '../assets/images/train5.jpg'
 import train1 from '../assets/images/train1.jpg'
 import train2 from '../assets/images/train2.jpg'
 import train4 from '../assets/images/train4.jpg'
+
 function Trainings() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -17,6 +19,10 @@ function Trainings() {
 function EdibleTreatsTrainingSection() {
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+
 
   const courses = [
     {
@@ -50,7 +56,7 @@ function EdibleTreatsTrainingSection() {
       level: "Intermediate",
       students: 15,
       rating: 4.9,
-      price: "GH₵500",
+      price: "GH₵5000",
       image: train1,
       description: "Elevate your skills with complex pastry techniques, chocolate work, and professional presentation methods.",
       highlights: ["Chocolate Tempering", "Laminated Doughs", "Plated Desserts", "Business Skills"]
@@ -97,6 +103,205 @@ function EdibleTreatsTrainingSection() {
     }
   ];
 
+  // Payment Modal Component
+  const PaymentModal = ({ course, onClose }) => {
+    const [customerInfo, setCustomerInfo] = useState({
+      email: '',
+      firstName: '',
+      lastName: '',
+      phone: ''
+    });
+
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setCustomerInfo(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    };
+
+    const handlePayment = () => {
+      const handler = window.PaystackPop.setup({
+        key: 'pk_live_a2aee4e2b8929c02c24fb42b46e9f451bdf98419', 
+        email: customerInfo.email,
+        amount: course.priceInPesewas,
+        currency: 'GHS',
+        ref: `course_${course.id}_${Date.now()}`,
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "Course",
+              variable_name: "course",
+              value: course.title
+            },
+            {
+              display_name: "Student Name",
+              variable_name: "student_name",
+              value: `${customerInfo.firstName} ${customerInfo.lastName}`
+            },
+            {
+              display_name: "Phone",
+              variable_name: "phone",
+              value: customerInfo.phone
+            }
+          ]
+        },
+        callback: function (response) {
+          console.log('Payment successful:', response);
+          setPaymentSuccess(true);
+          onClose();
+        },
+        onClose: function () {
+          console.log('Payment window closed');
+        },
+      });
+
+      handler.openIframe();
+    };
+
+    return (
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-2xl max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-2xl font-bold text-gray-900">Complete Payment</h3>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-600 text-2xl"
+            >
+              ×
+            </button>
+          </div>
+
+          {/* Course Summary */}
+          <div className="bg-gray-50 rounded-xl p-4 mb-6">
+            <div className="flex items-center gap-4">
+              <img 
+                src={course.image} 
+                alt={course.title}
+                className="w-16 h-16 rounded-lg object-cover"
+              />
+              <div>
+                <h4 className="font-bold text-gray-900">{course.title}</h4>
+                <p className="text-sm text-gray-600">{course.duration} • {course.level}</p>
+                <p className="text-lg font-bold text-pink-600">{course.price}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Customer Information Form */}
+          <form className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={customerInfo.firstName}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={customerInfo.lastName}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                value={customerInfo.email}
+                onChange={handleInputChange}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                value={customerInfo.phone}
+                onChange={handleInputChange}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
+                placeholder="+233 XX XXX XXXX"
+                required
+              />
+            </div>
+          </form>
+
+          {/* Security Notice */}
+          <div className="flex items-center gap-2 mt-4 p-3 bg-green-50 rounded-lg">
+            <Shield className="w-5 h-5 text-green-600" />
+            <p className="text-sm text-green-700">
+              Secure payment powered by Paystack. Your payment information is encrypted and protected.
+            </p>
+          </div>
+
+          {/* Payment Button */}
+          <div className="mt-6">
+            {customerInfo.email && customerInfo.firstName && customerInfo.lastName && customerInfo.phone ? (
+              <button 
+                onClick={handlePayment}
+                className="w-full bg-[#ec4899] text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <CreditCard className="w-5 h-5" />
+                Pay {course.price} Securely
+              </button>
+            ) : (
+              <button
+                disabled
+                className="w-full bg-gray-300 text-gray-500 py-3 rounded-xl font-semibold cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                <CreditCard className="w-5 h-5" />
+                Complete form to proceed
+              </button>
+            )}
+          </div>
+
+          <p className="text-xs text-gray-500 text-center mt-4">
+            By proceeding, you agree to our terms and conditions. You will receive course details via email after successful payment.
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // Success Modal Component
+  const SuccessModal = ({ onClose }) => (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl max-w-md w-full p-8 text-center">
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <CheckCircle className="w-8 h-8 text-green-600" />
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h3>
+        <p className="text-gray-600 mb-6">
+          Thank you for your enrollment. You will receive course details and joining instructions via email shortly.
+        </p>
+        <button
+          onClick={() => {
+            setPaymentSuccess(false);
+            onClose();
+          }}
+          className="w-full bg-[#ec4899] text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <section className="py-20 bg-gradient-to-br from-pink-50 via-white to-orange-50" id='trainings'>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +313,7 @@ function EdibleTreatsTrainingSection() {
             </div>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Professional <span className="text-transparent  gradient-text bg-clip-text">Training Programs</span>
+            Professional <span className="text-transparent bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text">Training Programs</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Transform your passion for baking into professional expertise with our comprehensive hands-on training programs
@@ -244,14 +449,26 @@ function EdibleTreatsTrainingSection() {
                       ))}
                     </div>
                     
-                    <a
-                      href="https://wa.me/233249967700"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-[#ec4899] text-white py-2 sm:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex justify-center items-center"
-                    >
-                      Enroll Now
-                    </a>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedCourse(course);
+                          setShowPaymentModal(true);
+                        }}
+                        className="flex-1 bg-[#ec4899] text-white py-2 sm:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex justify-center items-center gap-2 text-sm"
+                      >
+                        <CreditCard className="w-4 h-4" />
+                        Pay Now
+                      </button>
+                      <a
+                        href="https://wa.me/233249967700"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 border-2 border-[#ec4899] text-[#ec4899] py-2 sm:py-3 rounded-xl font-semibold hover:bg-[#ec4899] hover:text-white transition-all duration-300 flex items-center justify-center text-sm"
+                      >
+                        Info
+                      </a>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -350,12 +567,12 @@ function EdibleTreatsTrainingSection() {
           <h3 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h3>
           <p className="text-xl mb-8 opacity-90">Join hundreds of successful graduates who transformed their passion into profession</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
+            <button
+              onClick={() => setActiveTab('courses')}
               className="bg-white text-pink-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 flex justify-center items-center"
             >
               Enroll Today
-            </a>
+            </button>
             <a
               href="#contact"
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
@@ -366,6 +583,24 @@ function EdibleTreatsTrainingSection() {
           </div>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && selectedCourse && (
+        <PaymentModal 
+          course={selectedCourse} 
+          onClose={() => {
+            setShowPaymentModal(false);
+            setSelectedCourse(null);
+          }} 
+        />
+      )}
+
+      {/* Success Modal */}
+      {paymentSuccess && (
+        <SuccessModal 
+          onClose={() => setPaymentSuccess(false)} 
+        />
+      )}
     </section>
   );
 }
